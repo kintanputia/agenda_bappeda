@@ -348,13 +348,21 @@
                                             }
                                         }
                                         else if(js.value=="") {
-                                            if(cv_jm>=jm.value && cv_jm<bt){
-                                                console.log("gabisa dipake4");
+                                            if (cv_jm<=jm.value && cv_js>jm.value){
+                                                console.log(cv_jm);
+                                                console.log(cv_js);
+                                                console.log(jm.value);
+                                                console.log("gabisa dipake1");
                                                 sub = false;
                                                 break;
                                             }
-                                            else if (cv_js<bt && cv_js>jm.value){
-                                                console.log("gabisa dipake5");
+                                            else if (cv_jm<bts && cv_js>=bts){
+                                                console.log("gabisa dipake2");
+                                                sub = false;
+                                                break;
+                                            }
+                                            else if(cv_jm>jm.value && cv_js<bts){
+                                                console.log("gabisa dipake2");
                                                 sub = false;
                                                 break;
                                             }
@@ -385,13 +393,21 @@
                                             }
                                         }
                                         else if(js.value=="") {
-                                            if(cv_jm>=jm.value && cv_jm<bt){
-                                                console.log("gabisa dipake9");
+                                            if (cv_jm<=jm.value && cv_js>jm.value){
+                                                console.log(cv_jm);
+                                                console.log(cv_js);
+                                                console.log(jm.value);
+                                                console.log("gabisa dipake1");
                                                 sub = false;
                                                 break;
                                             }
-                                            else if (cv_js<bt && cv_js>jm.value){
-                                                console.log("gabisa dipake10");
+                                            else if (cv_jm<bts && cv_js>=bts){
+                                                console.log("gabisa dipake2");
+                                                sub = false;
+                                                break;
+                                            }
+                                            else if(cv_jm>jm.value && cv_js<bts){
+                                                console.log("gabisa dipake2");
                                                 sub = false;
                                                 break;
                                             }

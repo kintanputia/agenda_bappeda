@@ -25,7 +25,7 @@ class CreatePemakaiansTable extends Migration
                                     ->onDelete('cascade');
             $table->date('tgl_pemakaian')->nullable(false);
             $table->time('jam_mulai')->nullable($value=false);
-            $table->time('jam_selesai')->nullable($value=true)->default('16:00');
+            $table->time('jam_selesai')->nullable($value=false);
             $table->timestamps();
         });
     }

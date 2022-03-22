@@ -45,7 +45,19 @@ class AgendaController extends Controller
             'jam_selesai'=>'nullable',
             'lokasi'=>'required',
             'file'=>'required|mimes:pdf'
+        ],
+        [
+            'file.mimes' => 'Format dokumen harus berupa pdf'
         ]);
+
+        // set value jam selesai
+        if ($validatedData['jam_selesai']==null){
+            $js = '22:00:00';
+        }
+        else if ($validatedData['jam_selesai']!=null){
+            $js = $validatedData['jam_selesai'];
+        }
+
         $period = CarbonPeriod::create($validatedData['tgl_mulai'], $validatedData['tgl_selesai']);
         if ($file = $request->file('file')) {
             $destinationPath = 'dokumen/';
@@ -76,7 +88,7 @@ class AgendaController extends Controller
                         'tgl_pemakaian'=>$date->format('Y-m-d'),
                         'id_lokasi'=>$validatedData['lokasi'],
                         'jam_mulai'=>$validatedData["jam_mulai"],
-                        'jam_selesai'=>$validatedData["jam_selesai"]
+                        'jam_selesai'=>$js
                         ]);
                 }
             }
@@ -180,6 +192,14 @@ class AgendaController extends Controller
             'file'=>'mimes:pdf'
         ]);
 
+        // set value jam selesai
+        if ($validatedData['jam_selesai']==null){
+            $js = '22:00:00';
+        }
+        else if ($validatedData['jam_selesai']!=null){
+            $js = $validatedData['jam_selesai'];
+        }
+
         $id = $data->id;
         $perihal = $validatedData['perihal'];
         $deskripsi = $validatedData['deskripsi'];
@@ -191,6 +211,7 @@ class AgendaController extends Controller
         $jam_selesai = $validatedData['jam_selesai'];
         $edit1 = false;
         $edit2 = false;
+
   
         if ($file = $data->file('file')) {
             $destinationPath = 'dokumen/';
@@ -235,7 +256,7 @@ class AgendaController extends Controller
                                 'tgl_pemakaian'=>$date->format('Y-m-d'),
                                 'id_lokasi'=>$lokasi,
                                 'jam_mulai'=>$jam_mulai,
-                                'jam_selesai'=>$jam_selesai
+                                'jam_selesai'=>$js
                                 ]);
                         }
                 }

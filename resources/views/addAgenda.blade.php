@@ -32,15 +32,15 @@
                 @csrf
                 <div class="mb-3 p-5">
                     <label for="perihal" class="form-label">Perihal</label>
-                    <input type="text" name="perihal" id="perihal" placeholder="Masukkan perihal rapat" class="form-control" value="{{ old('perihal') }}" required>
+                    <input type="text" name="perihal" id="perihal" placeholder="Masukkan perihal agenda" autocomplete="off" class="form-control" value="{{ old('perihal') }}" required>
                 </div>
                 <div class="mb-3 p-5">
                     <label for="deskripsi" class="form-label">Deskripsi (opsional)</label>
-                    <br><textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi rapat">{{ old('deskripsi') }}</textarea>
+                    <br><textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Masukkan deskripsi agenda" autocomplete="off">{{ old('deskripsi') }}</textarea>
                 </div>
                 <div class="mb-3 p-5">
                     <label for="peserta" class="form-label">Peserta</label>
-                    <input id="peserta" type="hidden" name="peserta" id="peserta" value="{{ old('peserta') }}">
+                    <input id="peserta" type="hidden" name="peserta" id="peserta" value="{{ old('peserta') }}" autocomplete="off">
                     <trix-editor input="peserta"></trix-editor>
                 </div>
                 <div class="mb-3 p-5">
@@ -52,7 +52,7 @@
                                             <!-- pilih ruangan dalam gedung-->
                                             <div class="form-group col-lg-10">
                                                 <div class="col-lg-5" id="internal1">
-                                                    <select class="form-control default-select" id="internal" name="lokasi1">
+                                                    <select class="form-control default-select" id="internal" name="lokasi1" data-size="5">
                                                     <option value="" selected>---- Pilih Ruangan ----</option>
                                                     @foreach ($ruangan as $r)
                                                         <option value="{{ $r->id_lokasi }}">{{ $r->nama_lokasi }}</option>
@@ -69,7 +69,7 @@
                                             <div class="form-group col-lg-10">
                                                 <div class="col-lg-12" id="eksternal1">
                                                     <div class="col-lg-5 p-1">
-                                                        <select class="form-control default-select2" id="eksternal" name="lokasi2">
+                                                        <select class="form-control default-select2" id="eksternal" name="lokasi2" data-size="5">
                                                         <option value="" selected>---- Pilih Lokasi ----</option>
                                                         @foreach ($lokasi as $l)
                                                             <option value="{{ $l->id_lokasi }}">{{ $l->nama_lokasi }}</option>
@@ -101,15 +101,15 @@
                 </div>
                 <div class="mb-3 p-5 col-lg-10">
                     <label for="tgl_selesai" class="form-label">Tanggal Selesai</label>
-                    <input id="tgl_selesai" type="date" name="tgl_selesai" id="tgl_selesai" class="date_picker2 form-control" value="{{ old('tgl_selesai') }}" required>
+                    <input id="tgl_selesai" type="date" name="tgl_selesai" id="tgl_selesai" class="date_picker form-control" value="{{ old('tgl_selesai') }}" required>
                 </div>
                 <div class="mb-3 p-5 col-lg-10">
                     <label for="jam_mulai" class="form-label">Waktu Mulai</label>
-                    <br><input id="jam_mulai" class="timepicker" name="jam_mulai" id="jam_mulai" type="text" value="{{ old('jam_mulai') }}">
+                    <br><input id="jam_mulai" class="timepicker" autocomplete="off" name="jam_mulai" id="jam_mulai" type="text" value="{{ old('jam_mulai') }}">
                 </div>
                 <div class="mb-3 p-5 col-lg-10">
                     <label for="jam_selesai" class="form-label">Waktu Selesai (opsional)</label>
-                    <br><input id="jam_selesai" class="timepicker2" name="jam_selesai" id="jam_selesai" type="text" value="{{ old('jam_selesai') }}">
+                    <br><input id="jam_selesai" class="timepicker2" autocomplete="off" name="jam_selesai" id="jam_selesai" type="text" value="{{ old('jam_selesai') }}">
                 </div>
                 <div class="mb-3 p-5 col-lg-3">
                     <label for="upload_file">Upload File</label>
@@ -135,16 +135,6 @@
 
         today = yyyy + '-' + mm + '-' + dd;
         $('.date_picker').attr('min',today);
-    </script>
-    <!-- date picker tanggal selesai -->
-    <script language="javascript">
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0');
-        var yyyy = today.getFullYear();
-
-        today = yyyy + '-' + mm + '-' + dd;
-        $('.date_picker2').attr('min',today);
     </script>
     <!-- set value lokasi -->
     <script>
@@ -199,7 +189,7 @@
                 timeFormat: 'HH:mm',
                 interval: 30,
                 minTime: '08:00',
-                maxTime: '16:00',
+                maxTime: '20:00',
                 defaultTime: '',
                 startTime: '08:00',
                 dynamic: false,
@@ -210,7 +200,7 @@
                 timeFormat: 'HH:mm',
                 interval: 30,
                 minTime: '08:30',
-                maxTime: '16:00',
+                maxTime: '22:00',
                 defaultTime: '',
                 startTime: '08:30',
                 dynamic: false,
@@ -320,13 +310,21 @@
                                             }
                                         }
                                         else if(js.value=="") {
-                                            if(cv_jm>=jm.value && cv_jm<bt){
-                                                console.log("gabisa dipake4");
+                                            if (cv_jm<=jm.value && cv_js>jm.value){
+                                                console.log(cv_jm);
+                                                console.log(cv_js);
+                                                console.log(jm.value);
+                                                console.log("gabisa dipake1");
                                                 sub = false;
                                                 break;
                                             }
-                                            else if (cv_js<bt && cv_js>jm.value){
-                                                console.log("gabisa dipake5");
+                                            else if (cv_jm<bts && cv_js>=bts){
+                                                console.log("gabisa dipake2");
+                                                sub = false;
+                                                break;
+                                            }
+                                            else if(cv_jm>jm.value && cv_js<bts){
+                                                console.log("gabisa dipake2");
                                                 sub = false;
                                                 break;
                                             }
@@ -357,13 +355,21 @@
                                             }
                                         }
                                         else if(js.value=="") {
-                                            if(cv_jm>=jm.value && cv_jm<bt){
-                                                console.log("gabisa dipake9");
+                                            if (cv_jm<=jm.value && cv_js>jm.value){
+                                                console.log(cv_jm);
+                                                console.log(cv_js);
+                                                console.log(jm.value);
+                                                console.log("gabisa dipake1");
                                                 sub = false;
                                                 break;
                                             }
-                                            else if (cv_js<bt && cv_js>jm.value){
-                                                console.log("gabisa dipake10");
+                                            else if (cv_jm<bts && cv_js>=bts){
+                                                console.log("gabisa dipake2");
+                                                sub = false;
+                                                break;
+                                            }
+                                            else if(cv_jm>jm.value && cv_js<bts){
+                                                console.log("gabisa dipake2");
                                                 sub = false;
                                                 break;
                                             }
