@@ -44,10 +44,11 @@ class AgendaController extends Controller
             'jam_mulai'=>'required',
             'jam_selesai'=>'nullable',
             'lokasi'=>'required',
-            'file'=>'required|mimes:pdf'
+            'file'=>'required|mimes:pdf|max:10240'
         ],
         [
-            'file.mimes' => 'Format dokumen harus berupa pdf'
+            'file.mimes' => 'Format dokumen harus berupa pdf',
+            'file.max' => 'Ukuran file melebihi 10 Mb'
         ]);
 
         // set value jam selesai
@@ -189,7 +190,11 @@ class AgendaController extends Controller
             'jam_mulai'=>'required',
             'jam_selesai'=>'nullable',
             'lokasi'=>'required',
-            'file'=>'mimes:pdf'
+            'file'=>'mimes:pdf|max:10240'
+        ],
+        [
+            'file.mimes' => 'Format dokumen harus berupa pdf',
+            'file.max' => 'Ukuran file melebihi 10 Mb'
         ]);
 
         // set value jam selesai
