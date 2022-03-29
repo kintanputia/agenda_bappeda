@@ -53,7 +53,7 @@
                             <!-- pilih ruangan dalam gedung-->
                             <div class="form-group col-lg-10">
                                 <div class="col-lg-5" id="internal1">
-                                    <select class="form-control default-select" id="internal" name="lokasi1">
+                                    <select class="form-control default-select" id="internal" name="lokasi1" data-size="5">
                                     <!-- <option value="" selected>---- Pilih Ruangan ----</option> -->
                                         @foreach ($ruangan as $r)
                                             <?php 
@@ -74,7 +74,7 @@
                                 <!-- input lokasi luar gedung -->
                                 <div class="col-lg-12" id="eksternal1">
                                     <div class="col-lg-5 p-1">
-                                        <select class="form-control default-select2" id="eksternal" name="lokasi2">
+                                        <select class="form-control default-select2" id="eksternal" name="lokasi2" data-size="5">
                                         <!-- <option value="" selected>---- Pilih Ruangan ----</option> -->
                                             @foreach ($lokasi as $l)
                                                 <?php 
@@ -91,7 +91,7 @@
                                         <button type="button" class="btn btn-light btn-sm" onclick="tambah_lokasi(0)"><i class="fa-regular fa-plus"></i></button>
                                     </div>
                                     <div class="col-lg-4 p-1">
-                                        <input type="text" name="lokasi_baru" id="lokasi_baru" placeholder="Masukkan lokasi agenda" class="form-control">
+                                        <input type="text" name="lokasi_baru" id="lokasi_baru" placeholder="Masukkan lokasi agenda baru" autocomplete="off" class="form-control">
                                     </div>
                                     <div class="col-lg-1">
                                         <button type="button" id="btn_tambah_lokasi" class="btn btn-light btn-sm"><i class="fa-solid fa-check"></i></button>
