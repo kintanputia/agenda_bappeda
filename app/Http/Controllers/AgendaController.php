@@ -9,8 +9,9 @@ use App\Models\Lokasi;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
-
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class AgendaController extends Controller
 {
@@ -69,7 +70,8 @@ class AgendaController extends Controller
         }
         
         $simpan = DB::table('agenda')->insertGetId([
-            'nip'=>"728127812",
+            'nip'=>$request->nip,
+            'bidang'=>$request->bidang,
             'perihal'=>$validatedData['perihal'],
             'deskripsi'=>$validatedData['deskripsi'],
             'peserta'=>$validatedData['peserta'],
@@ -115,6 +117,7 @@ class AgendaController extends Controller
     {
         $ruangan = DB::table('lokasi')->where('posisi', 0)->get();
         $lokasi = DB::table('lokasi')->where('posisi', 1)->get();
+        // $bidang = Session::get('nama_')
         return view('addAgenda', ['ruangan'=>$ruangan, 'lokasi'=>$lokasi]);
     }
 
@@ -301,6 +304,30 @@ class AgendaController extends Controller
                     ->get();
         return response()->json([
             'status'=>$agenda
+        ]);
+    }
+    public function get_ruangan()
+    {
+        $ruangan = DB::table('lokasi')
+                    ->where('posisi', '=', 0)
+                    ->get();
+        return response()->json([
+            'ruangan'=>$ruangan
+        ]);
+    }
+    public function get_ketersediaan(Request $request)
+    {
+        $request->validate([
+            'ruangan' => 'required',
+            'tgl' => 'required'
+        ]);
+        $agenda = DB::table('pemakaian')
+                    ->join('agenda', 'pemakaian.id', '=', 'agenda.id')
+                    ->where('pemakaian.id_lokasi', '=', $request['ruangan'])
+                    ->where('pemakaian.tgl_pemakaian', '=', $request['tgl'])
+                    ->get();
+        return response()->json([
+            'ketersediaan'=>$agenda
         ]);
     }
     public function get_status_edit($id)

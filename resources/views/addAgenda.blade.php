@@ -92,7 +92,13 @@
 
                                         <!-- hidden input untuk menampung kategori lokasi terpilih -->
                                         <input type="hidden" id="lokasi" name="lokasi" value="" required>
-                                        <!-- hidden input untuk menampung ketersediaan ruangan -->
+
+                                        <!-- hidden input untuk menampung nip user -->
+                                        <input type="hidden" id="nip" name="nip" value="{{ Session::get('username') }}">
+                                        <!-- hidden input untuk menampung bidang user -->
+                                        <input type="hidden" id="bidang" name="bidang" value="{{ Session::get('bidang') }}">
+
+                                        <!-- hidden input untuk menandai lokasi dalam atau luar -->
                                         <input type="hidden" id="dl" name="dl" value="" required>
                 </div>
                 <div class="mb-3 p-5 col-lg-10">
@@ -207,6 +213,12 @@
                 dropdown: true,
                 scrollbar: true
             });
+            // $('.timepicker').timepicker({
+            //     timeFormat: 'HH:mm',
+            // });
+            // $('.timepicker2').timepicker({
+            //     timeFormat: 'HH:mm',
+            // });
     </script>
     <!-- select2 -->
     <script>
@@ -438,7 +450,7 @@
                 data: formData,
                 success: function() {
                     alert("Data Berhasil Ditambahkan");
-                    location.href = "/";
+                    location.href = "/dashboard";
                 },
                 error: function (data) {
                     var response = JSON.parse(data.responseText);
@@ -446,7 +458,7 @@
                         $.each( response.errors, function( key, value) {
                             errorString += value;
                         });
-                    console.log(errorString);
+                    console.log(data);
                     alert(errorString);
                 }
             });

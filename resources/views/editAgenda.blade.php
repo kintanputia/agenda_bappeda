@@ -473,7 +473,7 @@
                 data: formData,
                 success: function(data) {
                     alert("Data Berhasil Diedit");
-                    location.href = "/"
+                    location.href = "/dashboard"
                 },
                 error: function (data) {
                     console.log(data.responseText);

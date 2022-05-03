@@ -18,13 +18,17 @@
          <li class="dropdown navbar-user">
             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                <img src="assets/img/user-13.jpg" alt="" /> 
-               <span class="hidden-xs">Resepsionis</span> <b class="caret"></b>
+               <span class="hidden-xs">{{Session::get('user')}}</span> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu animated fadeInLeft">
-               <li class="arrow"></li>
+            <li class="arrow"></li>
                <li><a href="javascript:;">Edit Profile</a></li>
                <li class="divider"></li>
-               <li><a href="javascript:;">Log Out</a></li>
+               <li>
+                  <a class="dropdown-item" href="{{ route('logout') }}">
+                     {{ __('Logout') }}
+                  </a>
+               </li>
             </ul>
          </li>
       </ul>
@@ -136,7 +140,7 @@
          <li class="has-sub">
             <a href="{{ route('index') }}"><i class="fa fa-calendar"></i><span>E-Agenda</span></a>
          </li>
-         <li><a href="http://sakatoplan.sumbarprov.go.id/bappeda/dashboard/logout"><i class="fa fa-lock"></i> <span>Logout</span></a></li>
+         <li><a href="{{ route('logout') }}"><i class="fa fa-lock"></i> <span>Logout</span></a></li>
 
    <!-- begin sidebar minify button -->
    <li><a href="javascript:;" class="sidebar-minify-btn" data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>

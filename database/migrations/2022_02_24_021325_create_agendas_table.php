@@ -16,6 +16,7 @@ class CreateAgendasTable extends Migration
         Schema::create('agenda', function (Blueprint $table) {
             $table->id();
             $table->string('nip')->nullable($value=false);
+            $table->string('bidang')->nullable($value=false);
             $table->string('perihal')->nullable($value=false);
             $table->text('deskripsi')->nullable($value=true);
             $table->text('peserta')->nullable($value=false);
