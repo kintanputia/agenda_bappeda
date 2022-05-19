@@ -35,6 +35,10 @@
                             <td>{{ $detail->perihal }}</td>
                         </tr>
                         <tr>
+                            <td><b>Bidang Pelaksana<b></td>
+                            <td>{{ $detail->bidang }}</td>
+                        </tr>
+                        <tr>
                             <td><b>Deskripsi<b></td>
                             <td>{{ $detail->deskripsi }}</td>
                         </tr>
