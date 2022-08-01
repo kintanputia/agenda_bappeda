@@ -32,7 +32,7 @@ Route::group(['middleware' => 'PreventBack'], function(){
         Route::post('/edit_process', [AgendaController::class, 'edit_process'])->name('edit_process');
         Route::get('/add', [AgendaController::class,'create']);
         
-        Route::get('/tv', [AgendaController::class,'tampilan_tv']);
+        // Route::get('/tv', [AgendaController::class,'tampilan_tv']);
         Route::get('/tv/fetchdata', [AgendaController::class,'fetchdata']);
         Route::get('/getStatus',[AgendaController::class, 'get_status']);
         Route::get('/getRuangan',[AgendaController::class, 'get_ruangan']);
@@ -41,3 +41,4 @@ Route::group(['middleware' => 'PreventBack'], function(){
         Route::get('/getLokasi', [AgendaController::class, 'get_lokasi']);
     });
 });
+Route::get('/tv', [AgendaController::class,'tampilan_tv']);

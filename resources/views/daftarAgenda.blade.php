@@ -82,7 +82,7 @@
                                             <th class="text-center p-2 ">Peserta</th>
                                             <th class="text-center p-2 ">Tanggal</th>
                                             <th class="text-center p-2 ">Jam</th>
-                                            <th class="text-center p-2 ">Ruangan</th>
+                                            <th class="text-center p-2 ">Lokasi</th>
                                             <th class="text-center p-2 " width="15%">Aksi</th>
                                         </tr>
                                     </thead>

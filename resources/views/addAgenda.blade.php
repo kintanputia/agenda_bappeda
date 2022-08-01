@@ -194,10 +194,10 @@
             $('.timepicker').timepicker({
                 timeFormat: 'HH:mm',
                 interval: 30,
-                minTime: '08:00',
-                maxTime: '20:00',
+                minTime: '05:00',
+                maxTime: '22:00',
                 defaultTime: '',
-                startTime: '08:00',
+                startTime: '05:00',
                 dynamic: false,
                 dropdown: true,
                 scrollbar: true
@@ -205,10 +205,10 @@
             $('.timepicker2').timepicker({
                 timeFormat: 'HH:mm',
                 interval: 30,
-                minTime: '08:30',
+                minTime: '05:30',
                 maxTime: '22:00',
                 defaultTime: '',
-                startTime: '08:30',
+                startTime: '05:30',
                 dynamic: false,
                 dropdown: true,
                 scrollbar: true

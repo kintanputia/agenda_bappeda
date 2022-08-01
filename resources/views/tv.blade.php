@@ -37,10 +37,11 @@
                     <tr>      
                         <th>No.</th>
                         <th>Perihal</th>
+                        <th>Bidang Pelaksana</th>
                         <th>Peserta</th>
                         <th>Tanggal</th>                                    
                         <th>Jam</th>                                    
-                        <th>Ruangan</th>                                                                        
+                        <th>Lokasi</th>                                                                        
                     </tr>
                 </thead>
                 <tbody>
@@ -48,6 +49,7 @@
                 <tr>
                 <td style="text-align: center; vertical-align: middle;">{{ ++$i }}</td>
                 <td>{{ $agenda->perihal }}</td>
+                <td width="20%">{{ $agenda->bidang }}</td>
                 <td><?php echo $agenda->peserta ?></td>
                 <?php
                     $tm = Carbon\Carbon::parse($agenda->tgl_mulai);
@@ -120,7 +122,7 @@
         function pageScroll() {
             var objDiv = document.getElementById("contain");
         objDiv.scrollTop = objDiv.scrollTop + 1;  
-        if ((Math.round(objDiv.scrollTop) + 500) == objDiv.scrollHeight) {
+        if ((Math.round(objDiv.scrollTop) + 505) == objDiv.scrollHeight) {
             objDiv.scrollTop = 0;
         }
         my_time = setTimeout('pageScroll()', 50);
@@ -201,7 +203,7 @@
                                 var k = cv_js;
                             }
                         var x = i+1; 
-                        $('tbody').append('<tr><td class="text-center">'+ x +'</td><td>'+ response.agenda[i].perihal +'</td><td>'+ response.agenda[i].peserta +'</td><td class="text-center">'+ t +'</td><td class="text-center">'+ cv_jm +' - '+ k +'</td><td class="text-center">'+ response.agenda[i].nama_lokasi +'</td></tr>')
+                        $('tbody').append('<tr><td class="text-center">'+ x +'</td><td>'+ response.agenda[i].perihal +'</td><td class="text-center" width="20%">'+ response.agenda[i].bidang +'</td><td>'+ response.agenda[i].peserta +'</td><td class="text-center">'+ t +'</td><td class="text-center">'+ cv_jm +' - '+ k +'</td><td class="text-center">'+ response.agenda[i].nama_lokasi +'</td></tr>')
                        }
                    }
                 }
